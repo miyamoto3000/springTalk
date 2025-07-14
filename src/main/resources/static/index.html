@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp-Style Chat</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- SockJS and STOMP for WebSocket -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="min-h-screen bg-[#111b21] flex items-center justify-center p-4 font-sans">
+<div id="username-page" class="bg-[#202c33] p-8 rounded-lg shadow-lg max-w-md w-full">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">Enter Chatroom</h2>
+    <form id="usernameForm" class="space-y-4">
+        <div>
+            <label for="nickname" class="block text-gray-300 mb-2">Nickname</label>
+            <input type="text" id="nickname" name="nickname" class="w-full p-3 rounded-lg bg-[#2a3942] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00a884]" placeholder="Your nickname" required>
+        </div>
+        <div>
+            <label for="fullname" class="block text-gray-300 mb-2">Real Name</label>
+            <input type="text" id="fullname" name="realname" class="w-full p-3 rounded-lg bg-[#2a3942] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00a884]" placeholder="Your real name" required>
+        </div>
+        <button type="submit" class="w-full p-3 bg-[#00a884] text-white rounded-lg hover:bg-[#008f6f] transition-all duration-300">Enter Chatroom</button>
+    </form>
+</div>
+
+<div id="chat-page" class="hidden bg-[#202c33] rounded-lg shadow-lg flex max-w-4xl w-full h-[600px] overflow-hidden">
+    <div class="w-1/3 bg-[#111b21] p-6 flex flex-col border-r border-[#2a3942]">
+        <h2 class="text-xl font-semibold text-gray-300 mb-4">Online Users</h2>
+        <div class="users-list-container flex-1 overflow-y-auto">
+            <ul id="connectedUsers" class="space-y-2"></ul>
+        </div>
+        <div class="mt-4 flex items-center justify-between">
+            <p id="connected-user-fullname" class="text-gray-300"></p>
+            <a href="javascript:void(0)" id="logout" class="text-[#00a884] hover:text-[#008f6f] transition-all duration-300">Logout</a>
+        </div>
+    </div>
+    <div class="w-2/3 p-6 flex flex-col bg-[#0b141a]">
+        <p class="connecting text-red-400 mb-4 hidden">Could not connect to WebSocket server. Please refresh to try again!</p>
+        <div id="chat-messages" class="flex-1 overflow-y-auto mb-4 space-y-3"></div>
+        <form id="messageForm" name="messageForm" class="hidden flex gap-2">
+            <input autocomplete="off" type="text" id="message" placeholder="Type a message..." class="flex-1 p-3 rounded-full bg-[#2a3942] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00a884]">
+            <button type="submit" class="p-3 bg-[#00a884] text-white rounded-full hover:bg-[#008f6f] transition-all duration-300">Send</button>
+        </form>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

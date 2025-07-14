@@ -1,5 +1,6 @@
 package com.springboot.springTalk.user;
 
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
